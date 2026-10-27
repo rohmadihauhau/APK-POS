@@ -1,0 +1,472 @@
+.pos{
+    flex:1;
+    display:flex;
+    flex-direction:column;
+    height:100vh;
+    min-width:0
+}
+.tb{
+    background:linear-gradient(135deg,#0f3d2a,#16794c);
+    color:#fff;
+    padding:10px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap
+}
+.tl,.tr{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    flex-wrap:wrap
+}
+.tl b{
+    font-size:1.1rem;
+    margin-right:6px
+}
+.chip{
+    background:#ffffff22;
+    padding:5px 13px;
+    border-radius:20px;
+    font-size:.78rem
+}
+#clk{
+    font:600 1rem monospace;
+    margin-right:6px
+}
+.tb .btn{
+    padding:8px 15px;
+    font-size:.82rem;
+    box-shadow:none
+}
+.tb .btn.ghost{
+    background:#ffffff26;
+    color:#fff
+}
+kbd{
+    background:#0004;
+    border-radius:5px;
+    padding:1px 6px;
+    font-size:.7rem;
+    margin-left:4px
+}
+.bd{
+    flex:1;
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 380px;
+    gap:18px;
+    padding:18px;
+    min-height:0
+}
+.lf{
+    display:flex;
+    flex-direction:column;
+    min-height:0;
+    position:relative
+}
+.sug{
+    display:none;
+    position:absolute;
+    top:72px;
+    left:0;
+    right:0;
+    background:#fff;
+    border-radius:14px;
+    box-shadow:0 16px 36px #0003;
+    z-index:8;
+    overflow:hidden
+}
+.sug div{
+    padding:12px 18px;
+    cursor:pointer;
+    display:flex;
+    justify-content:space-between;
+    gap:10px
+}
+.sug div:hover{
+    background:#e4f6ec
+}
+.last{
+    background:linear-gradient(135deg,#16794c,#2fa86a);
+    color:#fff;
+    border-radius:16px;
+    padding:14px 22px;
+    margin-bottom:14px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    font-size:1.05rem;
+    min-height:62px
+}
+.last b{
+    font-size:1.5rem
+}
+.tbl{
+    flex:1;
+    overflow:auto;
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 6px 24px #16794c1a
+}
+.tbl table{
+    margin:0
+}
+.tbl th{
+    position:sticky;
+    top:0;
+    background:#f4faf6;
+    padding:12px 10px
+}
+.tbl td{
+    padding:10px
+}
+.mono{
+    font-family:monospace;
+    color:var(--mut);
+    font-size:.82rem
+}
+.x{
+    border:0;
+    background:#ffe9e9;
+    color:#d93a3a;
+    border-radius:8px;
+    width:28px;
+    height:28px;
+    cursor:pointer
+}
+.cart .tot{
+    padding:20px 18px
+}
+.cart .tot b{
+    font-size:2.4rem
+}
+.cart .btn.big{
+    margin-top:auto
+}
+.rk div{
+    display:flex;
+    justify-content:space-between;
+    padding:11px 0;
+    border-bottom:1px dashed #dde8e1
+}
+.rk .tg b{
+    color:var(--g);
+    font-size:1.25rem
+}
+.rpin{
+    width:100%;
+    font-size:1.9rem;
+    font-weight:700;
+    text-align:center;
+    color:var(--g);
+    padding:16px;
+    border-radius:16px
+}
+.ft{
+    text-align:center;
+    font-size:.74rem;
+    color:var(--mut);
+    padding:6px
+}
+/* ============================================================
+   POPUP SELISIH
+   ============================================================ */
+.selisih-box{
+    border-radius:14px;
+    padding:16px;
+    margin:15px 0;
+    text-align:center;
+    background:#fff4e5;
+    border:1px solid #ffd39b;
+}
+.selisih-box.kurang{
+    background:#ffeaea;
+    border-color:#ffb4b4;
+}
+.selisih-box h3{
+    margin:0 0 8px;
+    font-size:1.15rem;
+}
+.selisih-box .nominal{
+    font-size:1.8rem;
+    font-weight:700;
+    margin:5px 0;
+}
+.selisih-info{
+    font-size:.8rem;
+    color:#666;
+    line-height:1.6;
+}
+.close-actions{
+    display:flex;
+    gap:8px;
+    justify-content:center;
+    margin-top:15px;
+}
+.close-actions button{
+    flex:1;
+}
+.btn-danger{
+    background:#d93a3a !important;
+    color:#fff !important;
+}
+@media(max-width:900px){
+    .pos{
+        height:auto;
+        min-height:100vh
+    }
+    .bd{
+        grid-template-columns:1fr
+    }
+    .tbl{
+        max-height:38vh
+    }
+    .cart .btn.big{
+        margin-top:12px
+    }
+}
+/* ============================================================
+   TAMPILAN HP / APK (POTRET) - ringkas, muat satu layar
+   ============================================================ */
+@media(max-width:900px){
+html,body{height:100%;overflow:hidden}
+body{font-size:13px}
+.pos{height:100%;min-height:0}
+/* Header satu baris */
+.tb{padding:8px 12px;flex-wrap:nowrap;gap:8px}
+.tl{gap:6px;flex-wrap:nowrap;min-width:0}
+.tl b{font-size:.88rem;margin:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.chip{font-size:.66rem;padding:3px 9px;white-space:nowrap}
+.tl .chip:nth-of-type(2){display:none}
+.tr{flex-wrap:nowrap;gap:8px}
+#clk{font-size:.78rem;margin:0}
+.tb .btn{padding:6px 11px;font-size:.74rem;white-space:nowrap}
+/* Isi: daftar belanja menyempit, panel bayar tetap di bawah */
+.bd{display:flex;flex-direction:column;gap:8px;padding:8px;flex:1;min-height:0}
+.lf{flex:1;min-height:0}
+.scanbar{padding:4px 6px 4px 12px;margin-bottom:8px;border-radius:14px;gap:8px}
+.scanbar input{font-size:.86rem;padding:8px 0}
+.scanbar .btn{padding:8px 12px;font-size:.76rem;white-space:nowrap}
+.sug{top:54px}.sug div{padding:9px 14px;font-size:.84rem}
+.last{padding:8px 14px;margin-bottom:8px;min-height:38px;font-size:.85rem;border-radius:12px}
+.last b{font-size:1rem}
+/* Daftar belanja jadi kartu kecil (tanpa kolom # dan kode) */
+.tbl{flex:1;max-height:none;border-radius:14px}
+.tbl table,.tbl tbody{display:block}
+.tbl thead{display:none}
+.tbl tr{display:grid;grid-template-columns:1fr auto auto;column-gap:8px;align-items:center;padding:7px 12px;border-bottom:1px solid var(--line)}
+.tbl td{border:0;padding:1px 0;font-size:.78rem}
+.tbl tr:hover td{background:none}
+.tbl td:nth-child(1),.tbl td:nth-child(2){display:none}
+.tbl td:nth-child(3){grid-column:1/3;grid-row:1;font-size:.84rem}
+.tbl td:nth-child(7){grid-column:3;grid-row:1;justify-self:end}
+.tbl td:nth-child(4){grid-column:1;grid-row:2;color:var(--mut);font-size:.7rem}
+.tbl td:nth-child(5){grid-column:2;grid-row:2}
+.tbl td:nth-child(6){grid-column:3;grid-row:2;text-align:right;font-size:.8rem}
+.tbl td.empty{display:block;grid-column:1/-1;padding:26px 10px;font-size:.8rem}
+.qty{gap:6px}.qty span{min-width:16px;font-size:.8rem}
+.qty button{width:24px;height:24px;font-size:.95rem}
+.x{width:22px;height:22px;font-size:.7rem}
+/* Panel pembayaran ringkas */
+.cart{flex:none;padding:10px 12px;border-radius:16px;box-shadow:0 -4px 18px #16794c1f}
+.ch h3{font-size:.92rem}.lnk{font-size:.74rem}
+.cart .tot,.tot{padding:8px 12px!important;margin-top:6px!important;border-radius:12px}
+.tot small{font-size:.72rem}.tot span{font-size:.66rem}
+.cart .tot b{font-size:1.45rem}
+.mt{margin:8px 0;gap:8px}
+.mt button{padding:7px;font-size:.8rem;border-radius:10px;border-width:1.5px}
+#cash input{padding:8px 12px;font-size:.92rem;border-radius:10px}
+.quick{margin-top:6px;gap:5px}.quick button{padding:4px 10px;font-size:.7rem}
+.kem{margin-top:6px;font-size:.8rem}.kem b{font-size:1rem}
+.cart .btn.big,.btn.big{padding:11px;font-size:.92rem;margin-top:8px;border-radius:12px}
+kbd,.ft{display:none}
+/* Pop-up lebih kecil dan bisa digulir */
+.modal{padding:10px}
+.box{padding:18px;border-radius:18px;max-height:94%;overflow:auto}
+.box h2{font-size:1.1rem}.box p{margin:8px 0 14px;line-height:1.7;font-size:.85rem}
+.qt{font-size:1.4rem}.qimg img{max-width:220px}
+.ck{width:64px;height:64px}
+.toast{top:10px;padding:9px 18px;font-size:.8rem}
+.rpin{font-size:1.5rem;padding:11px}
+}
+/* ===== DISKON ===== */
+.disc{margin-top:8px;padding:8px 10px;border:1.5px dashed #cfe3d7;border-radius:12px;background:#fbfdfc}
+.disc .dh{display:flex;justify-content:space-between;align-items:center;font-size:.74rem;font-weight:600;color:var(--mut);margin-bottom:6px}
+.disc .dh b{color:var(--or);font-size:.8rem}
+.disc .dg{display:grid;grid-template-columns:repeat(4,1fr);gap:5px}
+.disc .dg button{border:1.5px solid #d6e3db;background:#fff;color:var(--g);border-radius:9px;padding:6px 0;font:600 .74rem Poppins,sans-serif;cursor:pointer;transition:.15s}
+.disc .dg button:hover{background:#f0faf4}
+.disc .dg button.on{border-color:var(--or);background:#fff1e6;color:#d9690f}
+.disc .dg button.nol{grid-column:span 2}
+.disc .dr{display:flex;justify-content:space-between;font-size:.76rem;margin-top:6px;color:var(--tx)}
+.disc .dr b{color:var(--or)}
+.disc .dr.hide{display:none}
+
+/* ============================================================
+   MODE TOGGLE (SCAN / MANUAL)
+   ============================================================ */
+.mode-toggle{
+    display:flex;
+    gap:6px;
+    margin-bottom:10px;
+    background:#e8f5ee;
+    border-radius:14px;
+    padding:5px 6px;
+    width:fit-content;
+    box-shadow:inset 0 2px 6px #16794c18
+}
+.mode-btn{
+    border:0;
+    background:transparent;
+    color:#16794c;
+    font:600 .85rem 'Poppins',sans-serif;
+    padding:8px 22px;
+    border-radius:10px;
+    cursor:pointer;
+    transition:background .2s,color .2s,box-shadow .2s,transform .15s;
+    display:flex;
+    align-items:center;
+    gap:6px;
+    white-space:nowrap
+}
+.mode-btn:hover{
+    background:#d0eddc
+}
+.mode-btn.active{
+    background:linear-gradient(135deg,#16794c,#2fa86a);
+    color:#fff;
+    box-shadow:0 4px 14px #16794c40;
+    transform:translateY(-1px)
+}
+
+/* ============================================================
+   MANUAL FORM
+   ============================================================ */
+.manual-form{
+    background:#fff;
+    border-radius:18px;
+    box-shadow:0 6px 24px #16794c1a;
+    padding:18px 20px 16px;
+    margin-bottom:14px;
+    border:1.5px solid #d6ede1;
+    animation:mfSlide .22s cubic-bezier(.4,0,.2,1)
+}
+@keyframes mfSlide{
+    from{opacity:0;transform:translateY(-10px)}
+    to{opacity:1;transform:translateY(0)}
+}
+.mf-row{
+    display:flex;
+    gap:12px;
+    margin-bottom:12px;
+    flex-wrap:wrap
+}
+.mf-field{
+    display:flex;
+    flex-direction:column;
+    flex:1;
+    min-width:140px;
+    gap:4px;
+    position:relative
+}
+.mf-field.mf-small{
+    flex:0 0 90px;
+    min-width:70px
+}
+.mf-field label{
+    font-size:.73rem;
+    font-weight:600;
+    color:#5a8c70;
+    text-transform:uppercase;
+    letter-spacing:.04em
+}
+.mf-field input{
+    border:1.5px solid #d0e8d8;
+    border-radius:10px;
+    padding:9px 13px;
+    font:500 .95rem 'Poppins',sans-serif;
+    color:#1a3d2a;
+    background:#fafffe;
+    transition:border-color .18s,box-shadow .18s;
+    outline:none;
+    width:100%;
+    box-sizing:border-box
+}
+.mf-field input:focus{
+    border-color:#16794c;
+    box-shadow:0 0 0 3px #16794c22;
+    background:#fff
+}
+.mf-field input[readonly]{
+    background:#f0faf5;
+    color:#3a6e52;
+    border-style:dashed;
+    cursor:default
+}
+.mf-field input.mf-sub{
+    font-weight:700;
+    font-size:1.05rem;
+    color:#16794c;
+    text-align:right
+}
+.mf-field input.mf-found{
+    border-color:#2fa86a;
+    background:#f4fbf7
+}
+.mf-field input.mf-notfound{
+    border-color:#e05252;
+    background:#fff6f6
+}
+.mf-hint{
+    font-size:.7rem;
+    min-height:16px;
+    padding:0 2px;
+    transition:color .15s
+}
+.mf-hint.ok{color:#16794c;font-weight:600}
+.mf-hint.err{color:#d93a3a;font-weight:600}
+
+/* Sug dropdown inside manual panel */
+#panelManual .sug{
+    position:static;
+    top:auto;
+    margin-top:4px;
+    border-radius:10px;
+    max-height:160px;
+    overflow:auto
+}
+
+.mf-actions{
+    display:flex;
+    align-items:stretch;
+    gap:12px;
+    margin-top:4px;
+    flex-wrap:wrap
+}
+.mf-btn-add{
+    white-space:nowrap;
+    padding:11px 22px;
+    font-size:.92rem;
+    flex-shrink:0
+}
+.mf-actions .last{
+    margin-bottom:0;
+    font-size:.86rem;
+    padding:10px 18px;
+    min-height:0
+}
+
+/* ============================================================
+   RESPONSIVE – manual form on small screens
+   ============================================================ */
+@media(max-width:900px){
+    .mode-toggle{margin-bottom:7px;padding:4px 5px}
+    .mode-btn{padding:7px 14px;font-size:.78rem}
+    .manual-form{padding:12px 12px 10px;border-radius:14px;margin-bottom:10px}
+    .mf-row{gap:8px;margin-bottom:8px}
+    .mf-field{min-width:100px}
+    .mf-field input{padding:7px 10px;font-size:.86rem}
+    .mf-field.mf-small{flex:0 0 70px;min-width:58px}
+    .mf-btn-add{padding:9px 16px;font-size:.82rem}
+}

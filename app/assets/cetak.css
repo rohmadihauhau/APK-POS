@@ -1,0 +1,127 @@
+@page {
+    size: A4 landscape;
+    margin: 8mm;
+}
+* {
+    box-sizing: border-box;
+}
+html,
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    color: #111;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 9px;
+}
+.toolbar {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 10;
+}
+.btn {
+    border: 0;
+    border-radius: 5px;
+    padding: 8px 14px;
+    background: #16794c;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+}
+.report {
+    width: 100%;
+}
+.title {
+    border-bottom: 2px solid #222;
+    padding-bottom: 7px;
+    margin-bottom: 8px;
+}
+.title h1 {
+    margin: 0;
+    font-size: 18px;
+}
+.title p {
+    margin: 3px 0 0;
+    font-size: 9px;
+}
+.summary {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+    margin-bottom: 8px;
+}
+.card {
+    border: 1px solid #888;
+    padding: 6px;
+}
+.card .label {
+    font-size: 7px;
+    color: #555;
+}
+.card .value {
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 2px;
+}
+.section {
+    margin-top: 8px;
+}
+.section h2 {
+    font-size: 11px;
+    margin: 0;
+    padding: 5px 6px;
+    border: 1px solid #777;
+    border-bottom: 0;
+    background: #eee;
+}
+table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+}
+thead {
+    display: table-header-group;
+}
+tr {
+    break-inside: avoid;
+    page-break-inside: avoid;
+}
+th,
+td {
+    border: 1px solid #999;
+    padding: 3px 4px;
+    vertical-align: middle;
+}
+th {
+    background: #eee;
+    font-size: 7px;
+    white-space: nowrap;
+}
+td {
+    font-size: 7px;
+}
+.num {
+    text-align: right;
+    white-space: nowrap;
+}
+.center {
+    text-align: center;
+}
+.nowrap {
+    white-space: nowrap;
+}
+.empty {
+    border: 1px solid #999;
+    padding: 12px;
+    text-align: center;
+}
+@media print {
+    .toolbar {
+        display: none !important;
+    }
+    body {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
