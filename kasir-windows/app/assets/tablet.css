@@ -1,0 +1,82 @@
+/* ============================================================
+   TABLET (Android 11" ± 1280x800 landscape / 800x1280 portrait)
+   Dimuat SETELAH style.css dan CSS inline halaman, jadi menang.
+   - Tombol lebih besar (nyaman disentuh jari)
+   - Panel pembayaran muat tanpa terpotong, tombol Bayar selalu terlihat
+   - Tinggi layar memakai dvh agar pas di WebView/APK
+   ============================================================ */
+html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+/* ---------- Tablet LANDSCAPE (± 901 - 1400px) ---------- */
+@media (min-width:901px) and (max-width:1400px){
+  /* Kasir (index.php) */
+  .pos{height:100vh;height:100dvh}
+  .bd{grid-template-columns:minmax(0,1fr) 340px;grid-template-rows:minmax(0,1fr);gap:12px;padding:12px}
+  .tb{padding:8px 14px}
+  .tb .btn{padding:10px 16px;font-size:.84rem}
+  .scanbar .btn{padding:11px 16px}
+  .last{padding:10px 18px;margin-bottom:10px;min-height:54px}
+  .last b{font-size:1.3rem}
+  .tbl th{padding:10px 8px;font-size:.72rem}
+  .tbl td{padding:9px 8px;font-size:.88rem}
+  .qty button{width:34px;height:34px;font-size:1.05rem}
+  .x{width:34px;height:34px}
+  /* Panel pembayaran: bisa digulir, tombol Bayar menempel di bawah */
+  .cart{padding:14px;min-height:0;overflow-y:auto;overscroll-behavior:contain}
+  .cart .tot{padding:12px 14px}
+  .cart .tot b{font-size:2rem}
+  .mt{margin:10px 0;gap:8px}
+  .mt button{padding:11px;font-size:.9rem}
+  #cash input{padding:11px 14px;font-size:1.05rem}
+  .quick button{padding:8px 14px;font-size:.8rem}
+  .kem{margin-top:8px}
+  .disc{margin-top:10px;padding:9px 10px}
+  .disc .dg button{padding:10px 0;font-size:.84rem}
+  .cart .btn.big{position:sticky;bottom:0;margin-top:12px;padding:15px;font-size:1rem;z-index:2}
+  /* Halaman admin (laporan, produk, stok, user) */
+  .side{width:200px;padding:18px 12px}
+  main{margin-left:200px;padding:18px}
+  .stats{grid-template-columns:repeat(auto-fit,minmax(150px,1fr))}
+  .side>a{padding:13px 12px}
+  /* Pop-up */
+  .box{max-width:460px;max-height:92vh;overflow:auto}
+}
+/* ---------- Tablet PORTRAIT (± 600 - 900px) ---------- */
+@media (min-width:600px) and (max-width:900px){
+  body{font-size:15px}
+  /* Kasir: daftar belanja kiri, pembayaran kanan (tidak ditumpuk) */
+  .bd{flex-direction:row!important;gap:10px;padding:10px;align-items:stretch}
+  .lf{flex:1 1 0;min-width:0}
+  .cart{flex:0 0 330px;width:330px;min-height:0;overflow-y:auto;box-shadow:0 4px 18px #16794c1f;overscroll-behavior:contain}
+  .cart .btn.big{position:sticky;bottom:0;margin-top:12px;padding:15px;font-size:1rem;z-index:2}
+  .cart .tot b{font-size:1.8rem}
+  .tb{padding:10px 14px}
+  .tb .btn{padding:10px 16px;font-size:.84rem}
+  .chip{font-size:.74rem;padding:5px 12px}
+  .tl .chip:nth-of-type(2){display:inline-block}
+  .tl b{font-size:1rem}
+  #clk{font-size:.9rem}
+  .scanbar input{font-size:1rem;padding:10px 0}
+  .scanbar .btn{padding:11px 16px;font-size:.84rem}
+  .tbl td{font-size:.88rem}
+  .tbl td:nth-child(3){font-size:.95rem}
+  .qty button{width:34px;height:34px;font-size:1.05rem}
+  .x{width:34px;height:34px;font-size:.85rem}
+  .mt button{padding:11px;font-size:.9rem}
+  #cash input{padding:11px 14px;font-size:1.05rem}
+  .quick button{padding:8px 14px;font-size:.8rem}
+  .disc .dg button{padding:10px 0;font-size:.84rem}
+  .box{max-width:480px}
+  /* Admin: menu bawah lebih besar */
+  .side>a{font-size:.78rem;padding:11px 2px}
+  main{padding:18px;margin-bottom:84px}
+}
+/* ---------- Login ---------- */
+@media (min-width:600px){
+  .login-card{max-width:420px;width:100%}
+  .login-card input{padding:14px 16px;font-size:1rem}
+  .login-card .btn{padding:14px;font-size:1rem}
+}
+/* ---------- Area aman (kamera/poni tablet) ---------- */
+@supports (padding:max(0px)){
+  .tb{padding-left:max(14px,env(safe-area-inset-left));padding-right:max(14px,env(safe-area-inset-right))}
+}
