@@ -1,0 +1,78 @@
+name: Build installer Windows 64-bit
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+env:
+  PHP_BRANCH: "8.3"
+  MARIADB_VERSION: "10.11.15"
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Siapkan folder stage
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force stage, dist | Out-Null
+          Copy-Item app stage\app -Recurse
+          Copy-Item installer\launcher.ps1, installer\router.php, installer\Restore-Data.bat, installer\app.ico stage\
+
+      - name: Unduh PHP (NTS, x64)
+        shell: pwsh
+        run: |
+          $rel = Invoke-RestMethod https://windows.php.net/downloads/releases/releases.json
+          $branch = $rel.($env:PHP_BRANCH)
+          $key = ($branch.PSObject.Properties | Where-Object { $_.Name -like 'nts-vs*-x64' } | Select-Object -First 1).Name
+          $file = $branch.$key.zip.path
+          Write-Host "PHP: $file"
+          Invoke-WebRequest "https://windows.php.net/downloads/releases/$file" -OutFile php.zip
+          Expand-Archive php.zip stage\php
+
+      - name: Unduh MariaDB (x64)
+        shell: pwsh
+        run: |
+          $v = $env:MARIADB_VERSION
+          Invoke-WebRequest "https://archive.mariadb.org/mariadb-$v/winx64-packages/mariadb-$v-winx64.zip" -OutFile maria.zip
+          Expand-Archive maria.zip maria-tmp
+          Move-Item (Get-ChildItem maria-tmp -Directory | Select-Object -First 1).FullName stage\mariadb
+          foreach ($d in 'mysql-test','sql-bench','include','docs') { Remove-Item "stage\mariadb\$d" -Recurse -Force -ErrorAction SilentlyContinue }
+          Get-ChildItem stage\mariadb -Recurse -Include *.pdb | Remove-Item -Force
+
+      - name: Salin runtime Visual C++ (app-local)
+        shell: pwsh
+        run: |
+          foreach ($dll in 'vcruntime140.dll','vcruntime140_1.dll','msvcp140.dll') {
+            Copy-Item "$env:WINDIR\System32\$dll" stage\php\ -Force
+            Copy-Item "$env:WINDIR\System32\$dll" stage\mariadb\bin\ -Force
+          }
+
+      - name: Pastikan Inno Setup ada
+        shell: pwsh
+        run: |
+          if (-not (Test-Path "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe")) { choco install innosetup -y --no-progress }
+
+      - name: Build installer
+        shell: pwsh
+        run: |
+          $ver = if ($env:GITHUB_REF -like 'refs/tags/v*') { $env:GITHUB_REF_NAME.TrimStart('v') } else { '0.0.' + $env:GITHUB_RUN_NUMBER }
+          & "${env:ProgramFiles(x86)}\Inno Setup 6\ISCC.exe" "/DAppVersion=$ver" installer\KasirBuah.iss
+          if ($LASTEXITCODE -ne 0) { throw 'ISCC gagal' }
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: KasirBuah-Setup
+          path: dist/KasirBuah-Setup.exe
+
+      - name: Rilis di GitHub (khusus tag v*)
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/KasirBuah-Setup.exe
